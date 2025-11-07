@@ -10,6 +10,8 @@ services:
       - ./loki-config.yaml:/etc/loki/config.yaml
       - ./loki-data:/loki
     command: -config.file=/etc/loki/config.yaml
+    networks:
+      - zandonet
 
   grafana:
     image: grafana/grafana:11.1.0
@@ -23,3 +25,8 @@ services:
       - ./grafana-data:/var/lib/grafana
     depends_on:
       - loki
+    networks:
+      - zandonet
+networks:
+  zandonet:
+    external: true
