@@ -8,7 +8,7 @@ services:
       - "3100:3100"
     volumes:
       - ./loki-config.yaml:/etc/loki/config.yaml
-      - ./loki-data:/loki
+      - loki-data:/loki
     command: -config.file=/etc/loki/config.yaml
 
   grafana:
@@ -20,6 +20,10 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - ./grafana-data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     depends_on:
       - loki
+
+volumes:
+  loki-data:
+  grafana-data:
